@@ -16,7 +16,7 @@ n
         android:ellipsize="end"
         android:maxLines="1"
         android:text="current affairs"
-
+        android:onClick="cf"
         android:textSize="20dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,8 +33,9 @@ n
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="appsc quiz"
+        android:onClick="apq"
 
+        android:text="appsc quiz"
         android:textSize="30dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,8 +70,9 @@ n
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="essay writing"
+        android:onClick="apwr"
 
+        android:text="essay writing"
         android:textSize="24dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"

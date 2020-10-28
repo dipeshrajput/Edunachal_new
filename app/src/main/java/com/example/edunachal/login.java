@@ -1,5 +1,4 @@
 package com.example.edunachal;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +26,7 @@ public class login extends AppCompatActivity {
     TextView mCreateBtn,forgotTextLink;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
-
+    Intent intent=getIntent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +35,9 @@ public class login extends AppCompatActivity {
 
         mEmail = findViewById(R.id.Email);
         mPassword = findViewById(R.id.password);
-        progressBar = findViewById(R.id.progressBar);
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.loginBtn);
         mCreateBtn = findViewById(R.id.createText);
-
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +61,6 @@ public class login extends AppCompatActivity {
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
-
                 // authenticate the user
 
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -76,7 +71,7 @@ public class login extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),MainActivity2.class));
                         }else {
                             Toast.makeText(login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+
                         }
 
                     }
@@ -95,4 +90,9 @@ public class login extends AppCompatActivity {
 
 
     }
+public void reg(View v)
+{
+    Intent intent=new Intent(this,Register.class);
+}
+
 }

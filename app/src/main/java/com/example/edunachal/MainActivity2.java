@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
@@ -18,7 +20,7 @@ public class MainActivity2 extends AppCompatActivity {
     {
         Intent intent=new Intent(MainActivity2.this, UPSC_01.class);
         startActivity(intent);
-    }    public void  app(View view)
+    }    public void  appsc(View view)
     {
         Intent intent=new Intent(MainActivity2.this, APPSC_01.class);
         startActivity(intent);
@@ -27,5 +29,22 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent=new Intent(MainActivity2.this, APPSC01.class);
         startActivity(intent);
     }
+    public void  ssc(View view)
+    {
+        Intent intent=new Intent(MainActivity2.this, ssc_01.class);
+        startActivity(intent);
+    }
+    public  void  logout(View v)
+    {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(),login.class));
+        finish();
+    }
+    public void  edu(View view)
+    {
+        Intent intent=new Intent(MainActivity2.this, edu_classes.class);
+        startActivity(intent);
+    }
+
 
 }

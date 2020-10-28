@@ -2,6 +2,7 @@ package com.example.edunachal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class appsc_writing extends AppCompatActivity {
@@ -10,5 +11,6 @@ public class appsc_writing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appsc_writing);
+        Intent intent = getIntent();
     }
 }

@@ -14,6 +14,7 @@
         android:layout_height="85dp"
         android:background="@drawable/cu2"
         android:ellipsize="end"
+        android:onClick="educ"
         android:text="Edunachal'S Classes
 "
         android:textSize="25dp"
@@ -32,6 +33,7 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
+        android:onClick="ssc"
         android:text="SSC/BANK "
         android:textSize="25dp"
         app:fontFamily="@font/acme"
@@ -49,7 +51,7 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:onClick=" "
+        android:onClick="upsc"
 
         android:text="UPSC"
         android:textSize="37dp"
@@ -69,6 +71,7 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
+        android:onClick=" "
         android:text="UGC NET "
         android:textSize="25dp"
         app:fontFamily="@font/acme"
@@ -86,7 +89,7 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:onClick=" "
+        android:onClick="appsb"
         android:text="APPSB"
         android:textSize="35dp"
         app:fontFamily="@font/acme"
@@ -128,7 +131,7 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-
+        android:onClick="appsc"
         android:text="APPSC"
         android:textSize="37dp"
         app:fontFamily="@font/acme"
@@ -139,4 +142,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
+    <Button
+        android:id="@+id/logut"
+        android:layout_width="154dp"
+        android:layout_height="61dp"
+        android:background="@drawable/cu2"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:onClick="logout"
+        android:text="Logout"
+        android:textSize="37dp"
+        app:fontFamily="@font/acme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 </androidx.constraintlayout.widget.ConstraintLayout>

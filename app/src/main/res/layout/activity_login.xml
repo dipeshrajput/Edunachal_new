@@ -54,6 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#43e97b"
+        android:onClick="reg"
         android:text="New User ? Create Account"
         android:textColor="#141515"
         android:textSize="22sp"
@@ -96,27 +97,6 @@
         app:srcCompat="@drawable/new1" />
 
 
-    <com.agrawalsuneet.dotsloader.loaders.LazyLoader
-        android:id="@+id/progressBar"
-        android:layout_width="83dp"
-        android:layout_height="58dp"
-        android:layout_margin="3dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.767"
-        app:lazyloader_animDur="400"
-        app:lazyloader_dotsDist="7dp"
-        app:lazyloader_dotsRadius="8dp"
-        app:lazyloader_firstDelayDur="150"
-        app:lazyloader_firstDotColor="#101211"
-        app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
-        app:lazyloader_secondDelayDur="300"
-        app:lazyloader_secondDotColor="#EFECEC"
-        app:lazyloader_thirdDotColor="#82E80C" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
