@@ -6,5 +6,9 @@
         <item name="colorPrimaryDark">#E5EDEA</item>
         <item name="colorAccent">#38F9D7</item>
     </style>
-
+    <style name="ToolBarStyle" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">#089208</item>
+        <item name="android:textColorSecondary">#089208</item>
+        <item name="colorControlNormal">#089208</item>
+    </style>
 </resources>

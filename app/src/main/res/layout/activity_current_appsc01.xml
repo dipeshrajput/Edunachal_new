@@ -53,7 +53,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="daily current affairs"
-
+        android:onClick="dailyCurrent"
         android:textSize="25dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -18,24 +18,33 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.edunachal.model.QuizModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.internal.bind.ArrayTypeAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class CurrentQuiz extends AppCompatActivity {
     DatabaseReference databaseReference;
-    String question,opt1,opt2,opt3,opt4,explanation;
+    String question,opt1,opt2,opt3,opt4,explanation,name,uid;
     int correct,score=0,total=0,optionChoose;
     TextView textView;
     CardView cardView, cardView1;
@@ -70,6 +79,28 @@ public class CurrentQuiz extends AppCompatActivity {
         obtained=findViewById(R.id.textView4);
         totalMarks=findViewById(R.id.textView5);
         remarks = findViewById(R.id.textView3);
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        uid = firebaseUser.getUid();
+        DatabaseReference nameReference = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+        nameReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    name=snapshot.child("name").getValue().toString();
+                }
+                else{
+                    Toast.makeText(CurrentQuiz.this, "Failed to get your name", Toast.LENGTH_SHORT).show();
+                    name="noUserFound";
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(CurrentQuiz.this, "Database Error", Toast.LENGTH_SHORT).show();
+                name="unidentified";
+            }
+        });
         databaseReference = FirebaseDatabase.getInstance().getReference().child("current_affairs").child("appsc");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -87,6 +118,7 @@ public class CurrentQuiz extends AppCompatActivity {
                         QuizModel quizModel = new QuizModel(question,opt1,opt2,opt3,opt4,explanation,correct);
                         quizModels.add(quizModel);
                     }
+                    Collections.shuffle(quizModels);
                     updateQuestion();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
@@ -187,18 +219,40 @@ public class CurrentQuiz extends AppCompatActivity {
         }
         if(total+1 == quizModels.size())
         {
+            progressBar.setVisibility(View.VISIBLE);
             total++;
-            cardView1.setVisibility(View.VISIBLE);
-            cardView.setVisibility(View.INVISIBLE);
             accuracy=score/(float)total;
             percentage=accuracy*100;
+            Map map = new HashMap();
+            map.put("name",name);
+            map.put("obtained marks",String.valueOf(score));
+            map.put("total marks",String.valueOf(total));
+            map.put("percentage",String.valueOf(percentage));
+            map.put("timestamp", ServerValue.TIMESTAMP);
+            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("appsc quiz response").child(uid);
+            databaseReference1.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(CurrentQuiz.this, "Response Updated", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(CurrentQuiz.this, "Failed to update your response\nDue to Error "+task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            });
             obtained.setText(String.valueOf(score));
             totalMarks.setText("/"+total);
+            cardView1.setVisibility(View.VISIBLE);
+            cardView.setVisibility(View.INVISIBLE);
             if(percentage>=60)
             {
                 obtained.setTextColor(Color.parseColor("#43e97b"));
                 gifImageView.setImageResource(R.drawable.great);
-                remarks.setText("Great Job You have scored more than 60%\nYour Calculated percentage is: "+percentage+"%" );
+                remarks.setText("Great Job You have scored more than 60%\nYour Calculated percentage is: "+percentage+"%");
             }
             else
             {

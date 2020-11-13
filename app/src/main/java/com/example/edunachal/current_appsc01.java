@@ -19,4 +19,9 @@ public class current_appsc01 extends AppCompatActivity {
         Intent intent = new Intent(this,CurrentQuiz.class);
         startActivity(intent);
     }
+
+    public void dailyCurrent(View view) {
+        Intent intent=new Intent(current_appsc01.this,UniversalCurrentAffairs.class);
+        startActivity(intent);
+    }
 }
