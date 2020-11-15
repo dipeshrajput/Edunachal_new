@@ -32,6 +32,7 @@
         android:layout_height="76dp"
         android:background="@drawable/cu2"
         android:ellipsize="end"
+        android:onClick="openQuiz"
         android:maxLines="1"
         android:text="current affairs quiz"
 
@@ -52,7 +53,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="daily current affairs"
-
+        android:onClick="dailyCurrent"
         android:textSize="25dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"

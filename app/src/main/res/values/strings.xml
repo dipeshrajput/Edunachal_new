@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Edunachal</string>
+    <string name="question">Question</string>
+    <string name="option1">Option1</string>
+    <string name="option2">Option2</string>
+    <string name="option3">Option3</string>
+    <string name="option4">Option4</string>
+    <string name="next">Next</string>
+    <string name="current_affairs">Current Affairs</string>
 </resources>
