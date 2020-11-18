@@ -1,7 +1,6 @@
 package com.example.edunachal;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,12 +14,12 @@ public class DisplayCurrentAffairs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        date=getIntent().getStringExtra("date");
-        Bundle bundle=new Bundle();
-        textView=findViewById(R.id.textView7);
-        textView.setText(date);
-        bundle.putString("date",date);
         setContentView(R.layout.activity_display_current_affairs);
+        date=getIntent().getStringExtra("date");
+        textView=findViewById(R.id.textView9);
+        textView.setText(date.replace(" ","/"));
+        Bundle bundle=new Bundle();
+        bundle.putString("date",date);
         CurrentAffairsFragment currentAffairsFragment=new CurrentAffairsFragment();
         currentAffairsFragment.setArguments(bundle);
         fragmentManager=getSupportFragmentManager();

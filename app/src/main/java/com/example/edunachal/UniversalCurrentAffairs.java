@@ -126,14 +126,13 @@ public class UniversalCurrentAffairs extends AppCompatActivity {
                                     @Override
                                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                         String date=dayOfMonth+" "+(month+1)+" "+year;
-                                        Toast.makeText(UniversalCurrentAffairs.this, date, Toast.LENGTH_SHORT).show();
                                         if(allDates.contains(new String(date))){
                                             Intent intent=new Intent(UniversalCurrentAffairs.this,DisplayCurrentAffairs.class);
                                             intent.putExtra("date", date);
                                             startActivity(intent);
                                         }
                                         else{
-                                          //  Toast.makeText(UniversalCurrentAffairs.this, "No current affairs available for this date", Toast.LENGTH_SHORT).show();
+                                           Toast.makeText(UniversalCurrentAffairs.this, "No current affairs available for this date", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
