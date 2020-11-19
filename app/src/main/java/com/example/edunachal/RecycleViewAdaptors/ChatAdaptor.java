@@ -74,7 +74,7 @@ public class ChatAdaptor extends RecyclerView.Adapter<ChatAdaptor.ChatViewHolder
                 Calendar calendar=Calendar.getInstance();
                 calendar.setTimeInMillis(chatModels.get(position).getTimestamp());
                 String[] months={"January","February","March","April","May","June","July","August","September","October","November","December"};
-                String[] days={"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
+                String[] days={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
                 String[] am_pm={"AM","PM"};
                 String messageInfo = days[calendar.get(Calendar.DAY_OF_WEEK)-1]+", "+months[calendar.get(Calendar.MONTH)]+" "+calendar.get(Calendar.DAY_OF_MONTH)+" "+calendar.get(Calendar.YEAR)+"\n"+calendar.get(Calendar.HOUR)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND)+" "+am_pm[calendar.get(Calendar.AM_PM)];
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
