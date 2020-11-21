@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplayCurrentAffairs"></activity>
+        <activity android:name=".DiscussionChats"></activity>
+        <activity android:name=".DisplayCurrentAffairs" />
         <activity
             android:name=".UniversalCurrentAffairs"
             android:parentActivityName=".current_appsc01" />

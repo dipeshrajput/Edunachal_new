@@ -14,9 +14,7 @@
         android:layout_height="85dp"
         android:background="@drawable/cu2"
         android:ellipsize="end"
-        android:onClick="educ"
-        android:text="Edunachal'S Classes
-"
+        android:text="Edunachal'S Classes"
         android:textSize="25dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +69,6 @@
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:onClick=" "
         android:text="UGC NET "
         android:textSize="25dp"
         app:fontFamily="@font/acme"
@@ -159,4 +156,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/discussion"
+        android:onClick="discussionChatSend"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

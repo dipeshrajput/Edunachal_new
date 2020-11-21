@@ -47,4 +47,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
+    public void discussionChatSend(View view) {
+        Intent intent = new Intent(MainActivity2.this, DiscussionChats.class);
+        startActivity(intent);
+    }
 }
