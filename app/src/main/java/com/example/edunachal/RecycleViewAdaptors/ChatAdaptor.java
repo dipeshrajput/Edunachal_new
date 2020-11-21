@@ -59,10 +59,12 @@ public class ChatAdaptor extends RecyclerView.Adapter<ChatAdaptor.ChatViewHolder
         final ChatModel chatModel = chatModels.get(position);
         if(holder.vType==2)
         {
-            holder.textView1.setText(chatModel.getFrom());
+            holder.textView1.setText(chatModel.getFrom()+" - "+chatModel.getTag());
             holder.textView.setText(chatModel.getMessage());
             if(chatModel.getUid().equals("rtvHTQwcp7VRVpbCzUMZRUesReX2"))
                 holder.textView1.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_verified_24,0);
+            else
+                holder.textView1.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,0,0);
         }
         else
         {

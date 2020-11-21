@@ -16,7 +16,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="current affairs"
-
+        android:onClick="UniCurrentAffairs"
         android:textSize="20dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +28,7 @@
 
     <Button
         android:id="@+id/upscquiz"
+        android:onClick="upscQuiz"
         android:layout_width="177dp"
         android:layout_height="85dp"
         android:background="@drawable/cu2"

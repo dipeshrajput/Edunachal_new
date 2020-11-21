@@ -7,14 +7,16 @@ public class ChatModel {
     String messageId;
     long timestamp;
     String uid;
+    String tag;
 
-    public ChatModel(String message, String from, String type, String messageId, long timestamp, String uid) {
+    public ChatModel(String message, String from, String type, String messageId, long timestamp, String uid, String tag) {
         this.message = message;
         this.from = from;
         this.type = type;
         this.messageId = messageId;
         this.timestamp = timestamp;
         this.uid = uid;
+        this.tag = tag;
     }
 
     public ChatModel() {
@@ -66,5 +68,13 @@ public class ChatModel {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }
