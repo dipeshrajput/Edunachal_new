@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -75,7 +77,7 @@ public class UniversalCurrentAffairs extends AppCompatActivity {
             }
         });
         databaseReference = FirebaseDatabase.getInstance().getReference().child("current_affairs").child("universal");
-        databaseReference.orderByChild("timestamp").limitToFirst(7).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("timestamp").limitToLast(7).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dateList=new ArrayList<>();
@@ -85,7 +87,11 @@ public class UniversalCurrentAffairs extends AppCompatActivity {
                     {
                         String dateofcur = ds.getKey();
                         dateList.add(dateofcur);
-                        tabLayout.addTab(tabLayout.newTab().setText(dateofcur.replace(" ","/")));
+                    }
+                    Collections.reverse(dateList);
+                    for(String mDate:dateList)
+                    {
+                        tabLayout.addTab(tabLayout.newTab().setText(mDate.replace(" ","/")));
                     }
                     viewPagerAdaptor=new ViewPagerAdaptor(UniversalCurrentAffairs.this,dateList);
                     viewPager2.setAdapter(viewPagerAdaptor);

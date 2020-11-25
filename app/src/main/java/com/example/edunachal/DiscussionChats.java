@@ -71,6 +71,7 @@ public class DiscussionChats extends AppCompatActivity {
                 {
                     name=snapshot.child("name").getValue().toString();
                     tag=snapshot.child("domain").getValue().toString();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -124,6 +125,7 @@ public class DiscussionChats extends AppCompatActivity {
                 chatAdaptor.notifyDataSetChanged();
                 if(chatModels.size()-1>=0)
                 recyclerView.scrollToPosition(chatModels.size()-1);
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
