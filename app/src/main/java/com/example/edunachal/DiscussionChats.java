@@ -42,9 +42,10 @@ public class DiscussionChats extends AppCompatActivity {
     DatabaseReference databaseReference, userReference;
     RecyclerView recyclerView;
     String uid;
-    String name;
+    String name, tag;
     ChatAdaptor chatAdaptor;
     List<ChatModel> chatModels;
+    List<String> keys;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class DiscussionChats extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar4);
         imageButton=findViewById(R.id.imageButton);
         chatModels=new ArrayList<>();
+        keys=new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -68,6 +70,8 @@ public class DiscussionChats extends AppCompatActivity {
                 if(snapshot.exists())
                 {
                     name=snapshot.child("name").getValue().toString();
+                    tag=snapshot.child("domain").getValue().toString();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
@@ -95,8 +99,10 @@ public class DiscussionChats extends AppCompatActivity {
                     String message = ds.child("message").getValue().toString();
                     long timestamp = Long.parseLong(ds.child("timestamp").getValue().toString());
                     String sender = ds.child("uid").getValue().toString();
-                    ChatModel chatModel = new ChatModel(message,from,type,messageId,timestamp,sender);
+                    String domain = ds.child("tag").getValue().toString();
+                    ChatModel chatModel = new ChatModel(message,from,type,messageId,timestamp,sender,domain);
                     chatModels.add(chatModel);
+                    keys.add(messageId);
                     chatAdaptor.notifyDataSetChanged();
                     recyclerView.scrollToPosition(chatModels.size()-1);
                     progressBar.setVisibility(View.INVISIBLE);
@@ -113,7 +119,13 @@ public class DiscussionChats extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                int index = keys.indexOf(snapshot.getKey());
+                chatModels.remove(index);
+                keys.remove(index);
+                chatAdaptor.notifyDataSetChanged();
+                if(chatModels.size()-1>=0)
+                recyclerView.scrollToPosition(chatModels.size()-1);
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -157,7 +169,6 @@ public class DiscussionChats extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful())
                             {
-                                chatModels.remove(position);
                                 progressBar.setVisibility(View.INVISIBLE);
                                 imageButton.setEnabled(true);
                                 chatAdaptor.notifyDataSetChanged();
@@ -203,6 +214,7 @@ public class DiscussionChats extends AppCompatActivity {
         map.put("timestamp", ServerValue.TIMESTAMP);
         map.put("type","text");
         map.put("uid",uid);
+        map.put("tag",tag);
 
         Map map1 = new HashMap();
         map1.put(messageId,map);

@@ -17,6 +17,7 @@ public class current_appsc01 extends AppCompatActivity {
 
     public void openQuiz(View view) {
         Intent intent = new Intent(this,CurrentQuiz.class);
+        intent.putExtra("flag","current appsc");
         startActivity(intent);
     }
 

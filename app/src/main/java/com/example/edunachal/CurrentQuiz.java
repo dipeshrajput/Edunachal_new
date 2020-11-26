@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,7 +44,7 @@ import java.util.Objects;
 import pl.droidsonroids.gif.GifImageView;
 
 public class CurrentQuiz extends AppCompatActivity {
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference1;
     String question,opt1,opt2,opt3,opt4,explanation,name,uid;
     int correct,score=0,total=0,optionChoose;
     TextView textView;
@@ -56,6 +57,7 @@ public class CurrentQuiz extends AppCompatActivity {
     Animation animationIn, animationOut;
     ProgressBar progressBar;
     float accuracy, percentage;
+    String extraFlag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,7 @@ public class CurrentQuiz extends AppCompatActivity {
         animationOut = AnimationUtils.loadAnimation(this,R.anim.slide_left_out);
         animationIn.setDuration(500);
         animationOut.setDuration(500);
+        extraFlag = getIntent().getStringExtra("flag");
         textView=findViewById(R.id.textView2);
         textView1=findViewById(R.id.radioButton);
         textView2=findViewById(R.id.radioButton1);
@@ -101,7 +104,24 @@ public class CurrentQuiz extends AppCompatActivity {
                 name="unidentified";
             }
         });
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("current_affairs").child("appsc");
+        switch (extraFlag) {
+            case "current appsc":
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("current_affairs").child("appsc");
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("appsc current quiz response").child(uid);
+                break;
+            case "appsc":
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("quiz").child("appsc");
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("appsc quiz response").child(uid);
+                break;
+            case "upsc":
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("quiz").child("upsc");
+                databaseReference1 = FirebaseDatabase.getInstance().getReference().child("upsc quiz response").child(uid);
+                break;
+            default:
+                Toast.makeText(this, "Module Not found", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
+        }
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -229,7 +249,7 @@ public class CurrentQuiz extends AppCompatActivity {
             map.put("total marks",String.valueOf(total));
             map.put("percentage",String.valueOf(percentage));
             map.put("timestamp", ServerValue.TIMESTAMP);
-            DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("appsc quiz response").child(uid);
+
             databaseReference1.setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

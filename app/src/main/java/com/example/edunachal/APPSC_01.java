@@ -16,7 +16,9 @@ public class APPSC_01 extends AppCompatActivity {
     }
 public void apq(View v)
 {
-    Intent intent=new Intent(APPSC_01.this,appsc_quiz.class);
+    Intent intent=new Intent(APPSC_01.this,CurrentQuiz.class);
+    intent.putExtra("flag","appsc");
+    startActivity(intent);
 }
 
     public void cf(View view) {
