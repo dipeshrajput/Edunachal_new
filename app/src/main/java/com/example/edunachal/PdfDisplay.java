@@ -62,12 +62,7 @@ public class PdfDisplay extends AppCompatActivity {
         @Override
         protected void onPostExecute(InputStream inputStream) {
             super.onPostExecute(inputStream);
-            pdfView.fromStream(inputStream).onLoad(new OnLoadCompleteListener() {
-                @Override
-                public void loadComplete(int nbPages) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-            });
+            pdfView.fromStream(inputStream).load();
         }
     }
 }
