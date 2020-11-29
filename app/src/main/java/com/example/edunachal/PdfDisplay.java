@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+import com.github.barteksc.pdfviewer.listener.OnRenderListener;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class PdfDisplay extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar6);
         progressBar.setMax(100);
         pdfView = findViewById(R.id.pdfview);
+        pdfView.fitToWidth();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE);
         new DownloadPdf().execute(url);
     }
@@ -44,15 +47,15 @@ public class PdfDisplay extends AppCompatActivity {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 if(httpURLConnection.getResponseCode() == 200)
                 {
+                    //long filelength = httpURLConnection.getContentLength();
                     inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-                    byte data[]= new byte[1024];
-                    long count,total = 0;
-                    long filelength = httpURLConnection.getContentLength();
-                    while((count = inputStream.read(data))!=-1)
-                    {
-                        total+=count;
-                        publishProgress((int) (total*100/filelength));
-                    }
+//                    byte data[]= new byte[1024];
+//                    long count,total = 0;
+//                    while((count = inputStream.read(data))>0)
+//                    {
+//                        total+=count;
+//                        publishProgress((int) (total*100/filelength));
+//                    }
                 }
                 else
                 {
@@ -60,9 +63,7 @@ public class PdfDisplay extends AppCompatActivity {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println(e.getMessage());
             }
-
             return inputStream;
         }
 
