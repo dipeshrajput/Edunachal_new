@@ -24,4 +24,25 @@ public class UPSC_01 extends AppCompatActivity {
         intent.putExtra("flag","upsc");
         startActivity(intent);
     }
+
+    public void studyNotesUpsc(View view) {
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","upsc");
+        intent.putExtra("flagExtra1","studyNotes");
+        startActivity(intent);
+    }
+
+    public void essayWritingUpsc(View view) {
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","upsc");
+        intent.putExtra("flagExtra1","essayWriting");
+        startActivity(intent);
+    }
+
+    public void answerPracticeUpsc(View view) {
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","upsc");
+        intent.putExtra("flagExtra1","answerWriting");
+        startActivity(intent);
+    }
 }

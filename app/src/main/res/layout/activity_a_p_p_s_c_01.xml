@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginbg2"
     tools:context=".APPSC_01">
-n
+
 
     <Button
         android:id="@+id/button000_apc"
@@ -53,7 +53,7 @@ n
         android:ellipsize="end"
         android:maxLines="1"
         android:text="study note"
-
+        android:onClick="studyNote"
         android:textSize="24dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +89,7 @@ n
         android:background="@drawable/cu2"
         android:ellipsize="end"
         android:text="answer writing practice"
-
+        android:onClick="answerWriting"
         android:textSize="22dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"

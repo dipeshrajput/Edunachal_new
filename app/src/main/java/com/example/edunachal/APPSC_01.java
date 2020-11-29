@@ -12,28 +12,38 @@ public class APPSC_01 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_p_p_s_c_01);
-        Intent intent = getIntent();
     }
-public void apq(View v)
-{
-    Intent intent=new Intent(APPSC_01.this,CurrentQuiz.class);
-    intent.putExtra("flag","appsc");
-    startActivity(intent);
-}
+
+    public void apq(View v)
+    {
+        Intent intent=new Intent(APPSC_01.this,CurrentQuiz.class);
+        intent.putExtra("flag","appsc");
+        startActivity(intent);
+    }
 
     public void cf(View view) {
-
-
         Intent intent = new Intent(APPSC_01.this, current_appsc01.class);
         startActivity(intent);
     }
     public void apwr(View v)
     {
-        Intent intent=new Intent(APPSC_01.this,appsc_writing.class);
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","appsc");
+        intent.putExtra("flagExtra1","essayWriting");
+        startActivity(intent);
     }
 
-    public void aessay(View view)
-    {Intent intent = new Intent(APPSC_01.this, apsc_study.class);
-        startActivity(intent);}
+    public void studyNote(View view) {
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","appsc");
+        intent.putExtra("flagExtra1","studyNotes");
+        startActivity(intent);
+    }
 
+    public void answerWriting(View view) {
+        Intent intent = new Intent(this,PdfListDisplay.class);
+        intent.putExtra("flagExtra","appsc");
+        intent.putExtra("flagExtra1","answerWriting");
+        startActivity(intent);
+    }
 }
