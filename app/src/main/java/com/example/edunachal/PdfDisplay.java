@@ -31,6 +31,7 @@ public class PdfDisplay extends AppCompatActivity {
         url=getIntent().getStringExtra("url");
         progressBar = findViewById(R.id.progressBar6);
         progressBar.setMax(100);
+        progressBar.setIndeterminate(true);
         pdfView = findViewById(R.id.pdfview);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE);
         new DownloadPdf().execute(url);
@@ -46,15 +47,7 @@ public class PdfDisplay extends AppCompatActivity {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 if(httpURLConnection.getResponseCode() == 200)
                 {
-                    //long filelength = httpURLConnection.getContentLength();
                     inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-//                    byte data[]= new byte[1024];
-//                    long count,total = 0;
-//                    while((count = inputStream.read(data))>0)
-//                    {
-//                        total+=count;
-//                        publishProgress((int) (total*100/filelength));
-//                    }
                 }
                 else
                 {
@@ -67,16 +60,14 @@ public class PdfDisplay extends AppCompatActivity {
         }
 
         @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-            progressBar.setProgress(values[0]);
-        }
-
-        @Override
         protected void onPostExecute(InputStream inputStream) {
             super.onPostExecute(inputStream);
-            progressBar.setVisibility(View.INVISIBLE);
-            pdfView.fromStream(inputStream).load();
+            pdfView.fromStream(inputStream).onLoad(new OnLoadCompleteListener() {
+                @Override
+                public void loadComplete(int nbPages) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            });
         }
     }
 }
