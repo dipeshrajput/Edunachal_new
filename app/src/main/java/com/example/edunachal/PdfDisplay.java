@@ -32,7 +32,6 @@ public class PdfDisplay extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar6);
         progressBar.setMax(100);
         pdfView = findViewById(R.id.pdfview);
-        pdfView.fitToWidth();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE);
         new DownloadPdf().execute(url);
     }
