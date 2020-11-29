@@ -20,6 +20,7 @@
         android:text="REASONING"
 
         android:textSize="30dp"
+        android:onClick="appsbReasoning"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="MATHS"
-
+        android:onClick="appsbMaths"
         android:textSize="37dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +56,7 @@
         android:maxLines="1"
         android:text="G.K"
         android:textSize="45dp"
+        android:onClick="appsbGk"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +74,7 @@
         android:maxLines="1"
         android:text="ENGLISH"
         android:textSize="35dp"
+        android:onClick="appsbEnglish"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -18,7 +18,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="REASONING"
-
+        android:onClick="sscBankReasoning"
         android:textSize="30dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="MATHS"
-
+        android:onClick="sscBankMaths"
         android:textSize="37dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,6 +48,7 @@
 
     <Button
         android:id="@+id/button007"
+        android:onClick="sscBankGk"
         android:layout_width="177dp"
         android:layout_height="85dp"
         android:background="@drawable/ml"
@@ -71,6 +72,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="ENGLISH"
+        android:onClick="sscBankEnglish"
         android:textSize="35dp"
         app:fontFamily="@font/acme"
         app:layout_constraintBottom_toBottomOf="parent"
